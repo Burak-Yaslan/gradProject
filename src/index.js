@@ -93,7 +93,7 @@ window.getCandidates = async function (context) {
         } else{
 
         candidatesList.innerHTML = "";
-        let showPollNumber = document.getElementById("showPollNumber").checked;
+        
         for (let i = 0; i < candidates.length; i++) {
             const li = document.createElement('li');
             const candidateName = candidates[i].name;
@@ -104,6 +104,7 @@ window.getCandidates = async function (context) {
                 li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - PollNumber: ${pollId}`));
             } else if(context === "admin"){
                 if(showPollNumber){
+                    let showPollNumber = document.getElementById("showPollNumber").checked;
                     li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - Votes: ${voteCount} - PollNumber: ${pollId}`));
                 }else{
                     li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - Votes: ${voteCount}`));
