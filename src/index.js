@@ -93,6 +93,7 @@ window.getCandidates = async function (context) {
         } else{
 
         candidatesList.innerHTML = "";
+        let showPollNumber = document.getElementById("showPollNumber").checked;
         for (let i = 0; i < candidates.length; i++) {
             const li = document.createElement('li');
             const candidateName = candidates[i].name;
@@ -102,7 +103,12 @@ window.getCandidates = async function (context) {
             if(context === "voter"){
                 li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - PollNumber: ${pollId}`));
             } else if(context === "admin"){
-                li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - Votes: ${voteCount} - PollNumber: ${pollId}`));
+                if(showPollNumber){
+                    li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - Votes: ${voteCount} - PollNumber: ${pollId}`));
+                }else{
+                    li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - Votes: ${voteCount}`));
+                }
+                
             } else {
                 console.error("Invalid context provided: ", context);
                 return;
