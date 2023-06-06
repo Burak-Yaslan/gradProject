@@ -51,6 +51,10 @@ window.vote = async function() {
     const voteCandidateName = document.getElementById('voteCandidateName').value;
     const pollId = document.getElementById("pollId").value;
     const voteMessageElement = document.getElementById("voteMessage");
+    let confirmation = confirm("Are you sure you want to vote for " + voteCandidateName + "?");
+    if (!confirmation) {
+      return;  // Stop function execution if the user clicked 'Cancel'.
+    }
     if(contract){
         try {
             let tx = await contract.vote(pollId, voteCandidateName);
