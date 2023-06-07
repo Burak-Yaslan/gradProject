@@ -75,57 +75,70 @@ window.vote = async function() {
 }
 
 window.getCandidates = async function (context) {
-    const pollIdElement = document.getElementById("pollId");
-    if (!pollIdElement) {
-        console.error("Element 'pollId' does not exist on this page");
-        return;
-    }
+  const pollIdElement = document.getElementById("pollId");
+  if (!pollIdElement) {
+    console.error("Element 'pollId' does not exist on this page");
+    return;
+  }
+  const pollId = pollIdElement.value;
+  const candidatesList = document.getElementById("candidatesList");
+  if (!candidatesList) {
+    console.error("Element 'candidatesList' does not exist on this page");
+    return;
+  }
+  if (contract) {
+    const candidates = await contract.getCandidates(pollId);
+    candidatesList.innerHTML = "";
 
-    const pollId = pollIdElement.value;
-    const candidatesList = document.getElementById('candidatesList');
-    if(!candidatesList){
-        console.error("Element 'candidatesList' does not exist on this page");
-        return;
-    }
-    if (contract) {
-
-        const candidates = await contract.getCandidates(pollId);
-        candidatesList.innerHTML = "";
-
-        if (candidates.length == 0) {           
-            candidatesList.innerHTML = "No candidates in this poll"; // If there are no candidates display message
-        } else{
-
-        candidatesList.innerHTML = "";
-        
-        for (let i = 0; i < candidates.length; i++) {
-            const li = document.createElement('li');
-            const candidateName = candidates[i].name;
-            const candidateId = candidates[i].id;
-            const voteCount = candidates[i].votes;
-
-            if(context === "voter"){
-                li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - PollNumber: ${pollId}`));
-            } else if(context === "admin"){
-                if(showPollNumber){
-                    let showPollNumber = document.getElementById("showPollNumber").checked;
-                    li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - Votes: ${voteCount} - PollNumber: ${pollId}`));
-                }else{
-                    li.appendChild(document.createTextNode(`${candidateName} - ID: ${candidateId} - Votes: ${voteCount}`));
-                }
-                
-            } else {
-                console.error("Invalid context provided: ", context);
-                return;
-            }
-
-            candidatesList.appendChild(li);
-        }
-    }
+    if (candidates.length == 0) {
+      candidatesList.innerHTML = "No candidates in this poll"; // If there are no candidates display message
     } else {
-        console.error("Contract is not defined");
+      candidatesList.innerHTML = "";
+      let candidateNames = [];
+      let voteCounts = [];
+      let showPollNumber = document.getElementById("showPollNumber").checked;
+      for (let i = 0; i < candidates.length; i++) {
+        const li = document.createElement("li");
+        const candidateName = candidates[i].name;
+        const candidateId = candidates[i].id;
+        const voteCount = candidates[i].votes;
+        candidateNames.push(candidateName);
+        voteCounts.push(voteCount);
+        
+        if (context === "voter") {
+          li.appendChild(
+            document.createTextNode(
+              `${candidateName} - ID: ${candidateId} - PollNumber: ${pollId}`
+            )
+          );
+        } else if (context === "admin") {
+          if (showPollNumber) {
+            li.appendChild(
+              document.createTextNode(
+                `${candidateName} - ID: ${candidateId} - Votes: ${voteCount} - PollNumber: ${pollId}`
+              )
+            );
+          }else{
+            li.appendChild(
+              document.createTextNode(
+                `${candidateName} - ID: ${candidateId} - Votes: ${voteCount}`
+              )
+            );
+          }
+          
+          
+        } else {
+          console.error("Invalid context provided: ", context);
+          return;
+        }
+
+        candidatesList.appendChild(li);
+      }
     }
-}
+  } else {
+    console.error("Contract is not defined");
+  }
+};
 
 window.getWinner = async function () {
     const winnerName = document.getElementById('winnerName');
