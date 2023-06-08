@@ -1,8 +1,14 @@
-export const contractAddress = "0x4a619905032A910bAB4688542077723c026c3A53"; // sepolia sunucusu için
+export const contractAddress = "0x8455fbE230479d45F8f0F7E68f6065B919803Ac5"; // sepolia sunucusu için
 
 export const abi = [
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_whitelistOwner",
+        "type": "address"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "constructor"
   },
@@ -55,9 +61,9 @@ export const abi = [
   {
     "inputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint32",
         "name": "pollId",
-        "type": "uint256"
+        "type": "uint32"
       }
     ],
     "name": "getCandidates",
@@ -70,19 +76,19 @@ export const abi = [
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint32",
             "name": "id",
-            "type": "uint256"
+            "type": "uint32"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint32",
             "name": "pollId",
-            "type": "uint256"
+            "type": "uint32"
           },
           {
-            "internalType": "uint256",
+            "internalType": "uint32",
             "name": "votes",
-            "type": "uint256"
+            "type": "uint32"
           }
         ],
         "internalType": "struct VotingContract.Candidate[]",
@@ -117,9 +123,9 @@ export const abi = [
     "name": "nextPollId",
     "outputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint32",
         "name": "",
-        "type": "uint256"
+        "type": "uint32"
       }
     ],
     "stateMutability": "view",
@@ -133,9 +139,9 @@ export const abi = [
         "type": "string"
       },
       {
-        "internalType": "uint256",
+        "internalType": "uint32",
         "name": "pollId",
-        "type": "uint256"
+        "type": "uint32"
       }
     ],
     "name": "representate",
@@ -146,9 +152,9 @@ export const abi = [
   {
     "inputs": [
       {
-        "internalType": "uint256",
+        "internalType": "uint32",
         "name": "pollId",
-        "type": "uint256"
+        "type": "uint32"
       },
       {
         "internalType": "string",
