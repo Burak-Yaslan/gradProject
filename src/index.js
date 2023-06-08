@@ -106,14 +106,24 @@ window.getCandidates = async function (context) {
         voteCounts.push(voteCount);
         
         if (context === "voter") {
-          li.appendChild(
-            document.createTextNode(
-              `${candidateName} - ID: ${candidateId} - PollNumber: ${pollId}`
-            )
-          );
+          if (showPollNumber) {
+            li.appendChild(
+              
+              document.createTextNode(
+                `${candidateName} - ID: ${candidateId} - PollNumber: ${pollId}`
+              )
+            );
+          }else{
+            li.appendChild(
+              document.createTextNode(
+                `${candidateName} - ID: ${candidateId}`
+              )
+            );
+          }
         } else if (context === "admin") {
           if (showPollNumber) {
             li.appendChild(
+              
               document.createTextNode(
                 `${candidateName} - ID: ${candidateId} - Votes: ${voteCount} - PollNumber: ${pollId}`
               )
@@ -124,9 +134,7 @@ window.getCandidates = async function (context) {
                 `${candidateName} - ID: ${candidateId} - Votes: ${voteCount}`
               )
             );
-          }
-          
-          
+          }         
         } else {
           console.error("Invalid context provided: ", context);
           return;
