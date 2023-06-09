@@ -1,4 +1,4 @@
-@import url(https://fonts.google.com/share?selection.family=Roboto%20Slab:wght@100);
+
 *{
     margin: 0;
     padding: 0;
@@ -36,7 +36,7 @@
 .sidebar h1{
     margin-top: 35px;
     font-size:  60px;
-    font-family: 'Robot Slab', serif;
+    font-family: "Poppins", sans-serif;
     
 }
 .sidebar p{
