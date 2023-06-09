@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Admin Dashboard</title>
     <style>
       * {
         margin: 0;
@@ -209,17 +209,18 @@
           <button onclick="getWinner()">See the Winner</button>
           <p id="winnerName"></p>
         </div>
+        <div class="box1" >
+          <h3>Enter the Whitelist Address</h3>
+          <textarea
+            id="whitelistInput"
+            class="whiteListText"
+            placeholder="Enter addresses separated by commas"
+          ></textarea>
+          <button class="whiteListButton" onclick="addToWhitelist()">
+            Add to Whitelist
+          </button>
       </div>
-      <div class="box1" class="requires-connection" style="display: none">
-        <h3>Enter the Whitelist Address</h3>
-        <textarea
-          id="whitelistInput"
-          class="whiteListText"
-          placeholder="Enter addresses separated by commas"
-        ></textarea>
-        <button class="whiteListButton" onclick="addToWhitelist()">
-          Add to Whitelist
-        </button>
+      
       </div>
     </div>
   </body>
