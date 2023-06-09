@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voting Dashboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+      }
+      .main {
+        width: 100%;
+        height: 130vh;
+        background-image: url(images/voteDash.jpg);
+        background-position: center;
+        background-size: cover;
+        position: relative;
+      }
+      .header {
+        margin-bottom: -120px;
+        margin-top: -110px;
+        font-size: 50px;
+        color: aliceblue;
+      }
+
+      p {
+        padding: 120px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .box1 {
+        border: 2px solid white;
+        height: 230px;
+        width: 200px;
+        margin-left: 155px;
+        float: left;
+        margin-top: 180px;
+        color: white;
+        transform: scale(1.55);
+        transition: transform 0.5s;
+      }
+      .pollList {
+        margin-left: 35px;
+        margin-top: 10px;
+      }
+      .box1-Candidates {
+        border: 2px solid white;
+        height: 230px;
+        width: 450px;
+        margin-left: 355px;
+        float: left;
+        margin-top: 180px;
+        color: white;
+        transform: scale(1.55);
+        transition: transform 0.5s;
+      }
+      .box1-Candidates:hover{
+        transform: scale(1.7);
+      }
+      .box1-Candidates h3 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .box1-Candidates button {
+        margin-top: 10px;
+      }
+      .box1-Candidates ul {
+        margin-left: 25px;
+      }
+      .box1 h3 {
+        text-align: center;
+        margin: 30px;
+        margin-top: 0px;
+      }
+
+      .box1:hover {
+        border: 5px solid whitesmoke;
+        /* height: 230px;
+        width: 195px;
+        margin: 5px;
+        margin-left: 155px; */
+        transform: scale(1.7);
+      }
+
+      #connectButton {
+        margin-top: -10px;
+        background-color: white;
+        color: black;
+        width: 300px;
+      }
+      #connectButton:hover {
+        transform: scale(1.1);
+      }
+      button {
+        height: 50px;
+        width: 150px;
+        margin-left: 20px;
+        margin-top: -10px;
+        background-color: grey;
+        color: aliceblue;
+        font-size: large;
+        font-family: "Times New Roman", Times, serif;
+        cursor: pointer;
+      }
+      button:hover {
+        color: green;
+        background-color: chartreuse;
+      }     
+      .representPoll {       
+        margin: 20px;
+        width: 45px;
+        transform: scale(1.7);
+        text-align: center;
+      }
+      .checkbox {
+        margin-left: 20px;
+        margin-top: -40px;
+      }
+      #vote{
+        margin-left: 350px;
+        
+      }
+      #vote input{
+        margin-bottom: 30px;
+        margin-left: 10px;
+      }
+      #candidatesList{
+        margin: -34px;
+        margin-left: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <p>
+          <b>Voting Dashboard</b>
+          <br />
+          <button id="connectButton" onclick="connect()">
+            Connect Your Metamask Wallet
+          </button>
+        </p>
+      </div>
+      <div id="main-div" class="requires-connection" style="display: none">
+        
+        <div class="box1">
+          <h3>Active Polls</h3>
+          <button onclick="getActivePolls()">Get Active Polls</button>
+          <ul id="activePollsList" class="pollList"></ul>
+        </div>        
+      </div>
+      <div id="candidate-div" class="requires-connection" style="display: none">       
+        <div class="box1-Candidates">        
+          <h3>Display Candidates of Poll: 
+            <input
+            type="text"
+            id="pollId"
+            placeholder="Poll ID"
+            class="representPoll"
+            /> </h3>
+           
+           <button id="getCandidatesButton" onclick="getCandidates('voter')">
+            Get Candidates 
+           </button> <ul id="candidatesList"></ul>
+                 
+        </div> 
+
+        <div id="vote" class="box1"> 
+          <h3>Vote</h3>
+          <input type="text" id="voteCandidateName" placeholder="Candidate Name">
+          <button onclick="vote()">Vote</button>
+          <span id="voteMessage"></span>
+          <span id="whitelistMessage"></span>
+        </div>  
+
+      </div>     
+      </div>
+    </div>
+    <input type="checkbox" id="showPollNumber" class="checkbox"  style="display: none"/>
+  </body>
+  <script src="index.js" type="module"></script>
+</html>

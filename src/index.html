@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlockchainBasedVotingApp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <img src="images/hamburger2.png" class="menu-icon" />
+      <div class="sidebar">
+        <div class="top-links">
+          <img src="images/arrow-icon.png" class="arrow-icon" />
+        </div>
+        <h1>The Future Of Voting</h1>
+        <h3>Burak Yaslan</h3>
+        <p>
+          Our blockchain-based e-voting system revolutionizes democracy by
+          ensuring transparent, secure, and trustworthy elections. It leverages
+          decentralization, immutability, and cryptographic security to
+          eliminate vulnerabilities in traditional voting systems. Each vote is
+          recorded as an immutable transaction on the blockchain, creating an
+          auditable and transparent ledger. The platform protects privacy and
+          anonymity through cryptographic algorithms while allowing authorized
+          parties to verify the process. Our system restores faith in democracy,
+          enhances voter participation, and streamlines elections, shaping a
+          future of trust and integrity in the electoral landscape.
+        </p>
+        <a href="admin.html" id="adminButton">Admin Dashboard</a>
+        <a href="voter.html" id="voterButton">Voter Dashboard</a>
+      </div>
+    </div>
+    <script>
+        document.getElementById("adminButton").addEventListener("click", function() {
+          var password = prompt("Enter the admin password:");
+          if (password === "admin123") {
+            window.location.href = "admin.html";
+          } else {
+            alert("Incorrect password!");
+          }
+        });
+    
+      </script>
+  </body>
+</html>

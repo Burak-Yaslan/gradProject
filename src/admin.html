@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        box-sizing: border-box;
+      }
+      .main {
+        width: 100%;
+        height: 130vh;
+        background-image: url(images/adminDash.jpg);
+        background-position: center;
+        background-size: cover;
+        position: relative;
+      }
+      .header {
+        margin-bottom: -120px;
+        margin-top: -110px;
+        font-size: 50px;
+        color: aliceblue;
+      }
+
+      p {
+        padding: 120px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .box1 {
+        border: 2px solid white;
+        height: 230px;
+        width: 200px;
+        margin-left: 155px;
+        float: left;
+        margin-top: 50px;
+        color: white;
+        transform: scale(1.05);
+        transition: transform 0.5s;
+      }
+      .box1-Candidates {
+        border: 2px solid white;
+        height: 230px;
+        width: 250px;
+        margin-left: 155px;
+        float: left;
+        margin-top: 31px;
+        color: white;
+        transform: scale(1.05);
+        transition: transform 0.5s;
+      }
+      .box1-Candidates:hover{
+        transform: scale(1.2);
+      }
+      .box1-Candidates h3 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .box1-Candidates button {
+        margin-top: 10px;
+      }
+      .box1-Candidates ul {
+        margin-left: 25px;
+      }
+      .box1 h3 {
+        text-align: center;
+        margin: 30px;
+        margin-top: 0px;
+      }
+
+      .box1:hover {
+        border: 5px solid whitesmoke;
+        /* height: 230px;
+        width: 195px;
+        margin: 5px;
+        margin-left: 155px; */
+        transform: scale(1.2);
+      }
+
+      #connectButton {
+        margin-top: -10px;
+        background-color: white;
+        color: black;
+        width: 300px;
+      }
+      #connectButton:hover {
+        transform: scale(1.1);
+      }
+      button {
+        height: 50px;
+        width: 150px;
+        margin-left: 20px;
+        margin-top: -10px;
+        background-color: grey;
+        color: aliceblue;
+        font-size: large;
+        font-family: "Times New Roman", Times, serif;
+        cursor: pointer;
+      }
+      button:hover {
+        color: green;
+        background-color: chartreuse;
+      }
+      #closePollId {
+        margin-top: 20px;
+        background-color: aliceblue;
+        width: 100px;
+        margin-left: 60px;
+      }
+      .pollList {
+        margin-left: 35px;
+        margin-top: 10px;
+      }
+      .representName {
+        margin-top: 55px;
+        margin-left: 10px;
+        transform: scale(1.1);
+      }
+      .representPoll {
+        margin-left: 20px;
+        margin-top: -10px;
+        width: 100px;
+        transform: scale(1.2);
+        text-align: center;
+      }
+      .whiteListText {
+        margin-left: 20px;
+        margin-bottom: 30px;
+        margin-top: -20px;
+      }
+      .whiteListButton {
+        margin: 10px;
+        margin-left: 20px;
+      }
+      .checkbox {
+        margin-left: 20px;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="header">
+        <p>
+          <b>Admin Dashboard</b>
+          <br />
+          <button id="connectButton" onclick="connect()">
+            Connect Your Metamask Wallet
+          </button>
+        </p>
+      </div>
+
+      <div id="poll-div" class="requires-connection" style="display: none">
+        <div class="box1">
+          <h3>New Poll</h3>
+          <button onclick="createNewPoll()">Create New Poll</button>
+        </div>
+        <div class="box1">
+          <h3>Active Polls</h3>
+          <button onclick="getActivePolls()">Get Active Polls</button>
+          <ul id="activePollsList" class="pollList"></ul>
+        </div>
+        <div class="box1">
+          <h3>Close Poll</h3>
+          <button onclick="closePoll()">Close Poll</button>
+          <input
+            type="text"
+            id="closePollId"
+            placeholder="Poll ID"
+            class="closePoll"
+          />
+        </div>
+      </div>
+      <div id="candidate-div" class="requires-connection" style="display: none">
+        <div class="box1">
+          <h3>Represent a Candidate</h3>
+          <button onclick="represent()">Represent</button>
+          <input
+            type="text"
+            id="candidateName"
+            placeholder="Candidate Name"
+            class="representName"
+          />
+        </div>
+        <input
+          type="text"
+          id="pollId"
+          placeholder="Poll ID"
+          class="representPoll"
+        />
+
+        <div class="box1-Candidates">
+          <h3>Display Candidates</h3>
+          <input type="checkbox" id="showPollNumber" class="checkbox" /> Show
+          Poll Number
+          <button id="getCandidatesButton" onclick="getCandidates('admin')">
+            Get Candidates
+          </button>
+          <ul id="candidatesList"></ul>
+        </div>
+
+        <div class="box1">
+          <h3>Display Winner</h3>
+          <button onclick="getWinner()">See the Winner</button>
+          <p id="winnerName"></p>
+        </div>
+      </div>
+      <div class="box1" class="requires-connection" style="display: none">
+        <h3>Enter the Whitelist Address</h3>
+        <textarea
+          id="whitelistInput"
+          class="whiteListText"
+          placeholder="Enter addresses separated by commas"
+        ></textarea>
+        <button class="whiteListButton" onclick="addToWhitelist()">
+          Add to Whitelist
+        </button>
+      </div>
+    </div>
+  </body>
+  <script src="index.js" type="module"></script>
+</html>

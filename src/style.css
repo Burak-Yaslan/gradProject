@@ -1,0 +1,77 @@
+@import url(https://fonts.google.com/share?selection.family=Roboto%20Slab:wght@100);
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.hero{
+    width: 100%;
+    height: 100vh;
+    background-image: url(images/blockchainBg.png);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.menu-icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 30px 25px;
+    cursor: pointer;
+}
+.sidebar{
+    width: 40%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-image: linear-gradient(rgba(80, 0, 230, 0.75), rgba(7,0,60,0.85));
+    padding: 20px 60px;
+    color: #fff;
+}
+.sidebar h1{
+    margin-top: 35px;
+    font-size:  60px;
+    font-family: 'Robot Slab', serif;
+    
+}
+.sidebar p{
+    font-size: 15px;
+    margin-top: 30px;
+    text-align: justify;
+}
+.sidebar a {
+    display: inline-block;
+    text-decoration: none;
+    color: #4e00ff;
+    background: #fff;
+    font-size: 14px;
+    padding: 15px 40px; 
+    border-radius: 4px;
+    margin-top: 30px;
+}
+.top-links{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.arrow-icon{
+    width: 30px;
+    cursor: pointer;
+}
+.top-links div img {
+    width: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+#adminButton:hover {
+    transform: scale(1.2);
+  }
+#voterButton:hover {
+    transform: scale(1.2);
+  }
